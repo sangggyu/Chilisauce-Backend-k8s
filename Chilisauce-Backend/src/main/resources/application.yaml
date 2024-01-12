@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active:
+      - local
+    group:
+      local:
+        - db-local
+        - common-local
+        - db
+        - common
+      dev:
+        - db-dev
+        - common-dev
+        - db
+        - common
+      exp:
+        - db-exp
+        - common-exp
+        - db
+        - common
