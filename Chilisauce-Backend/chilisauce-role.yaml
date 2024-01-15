@@ -5,5 +5,6 @@ metadata:
   namespace: chilisauce
 rules:
   - apiGroups: [""]
-    resources: ["pods"]
-    verbs: ["get", "list"]
+    resources: ["secrets"]
+    verbs: ["get"]
+    resourceName: ["chilisauce-token-secret"]
