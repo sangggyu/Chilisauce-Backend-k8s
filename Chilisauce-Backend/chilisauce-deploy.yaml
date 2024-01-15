@@ -18,10 +18,11 @@ spec:
       labels:
         app: chilisauce-backend
     spec:
+      serviceAccountName: chilisauce-serviceaccount
       terminationGracePeriodSeconds: 60
       containers:
         - name: chilisauce
-          image: 0892668/chilisauce-be
+          image: 0892668/chilisauce-be:0.0.2
           imagePullPolicy: Always
           resources:
             requests:
@@ -38,22 +39,22 @@ spec:
             httpGet:
               path: /probe/startup
               port: 8080
-            initialDelaySeconds: 45
+            initialDelaySeconds: 15
             periodSeconds: 1
-            failureThreshold: 10 #약간 높게 잡기
+            failureThreshold: 10
           readinessProbe:
             httpGet:
               path: /probe/ready
               port: 8080
-            initialDelaySeconds: 45
+            initialDelaySeconds: 15
             periodSeconds: 1
-            successThreshold: 1
-            failureThreshold: 2
+            successThreshold: 2
+            failureThreshold: 3
           livenessProbe:
             httpGet:
               path: /probe/live
               port: 8080
-            initialDelaySeconds: 45
+            initialDelaySeconds: 15
             periodSeconds: 1
-            failureThreshold: 10
+            failureThreshold: 7
 

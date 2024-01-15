@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chilisauce-ingress
+  namespace: chilisauce
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: /chilisauce
+            backend:
+              service:
+                name: chilisauce-service
+                port:
+                  number: 8080

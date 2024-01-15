@@ -34,7 +34,7 @@ public class WebSecurityConfig {
 
 //    @Value("${springdoc.api-docs.path}")
     String apidocsPath;
-
+//
 //    @Value("${springdoc.swagger-ui.path}")
     String swaggerPath;
 
@@ -49,7 +49,7 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer localWebSecurityCustomizer() {
         // 로컬 환경 개발 : h2-console 사용 및 resources 접근 허용 설정
         return (web) -> web.ignoring()
-                .requestMatchers(new AntPathRequestMatcher("/server/healthcheck"))
+                .requestMatchers(new AntPathRequestMatcher("/probe/*"))
                 .requestMatchers(new AntPathRequestMatcher("/docs/index.html"))
                 .requestMatchers(PathRequest.toH2Console())
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
@@ -60,7 +60,7 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer devWebSecurityCustomizer() {
         // mysql 배포 환경 : resources 접근 허용 설정
         return (web) -> web.ignoring()
-                .requestMatchers(new AntPathRequestMatcher("/server/healthcheck"))
+                .requestMatchers(new AntPathRequestMatcher("/probe/*"))
                 .requestMatchers(new AntPathRequestMatcher("/docs/index.html"))
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
@@ -80,6 +80,7 @@ public class WebSecurityConfig {
                 .antMatchers(apidocsPath+"/**").permitAll()
                 .antMatchers("/users/signup/**").permitAll()
                 .antMatchers("/users/login/**").permitAll()
+                .antMatchers("/probe/**").permitAll()
                 .anyRequest().authenticated()
                 .and().cors()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
