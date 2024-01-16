@@ -40,7 +40,7 @@ public class AdminService {
 
     /* 사원 목록 전체 조회 */
     @Transactional(readOnly = true)
-//    @Cacheable(value = "UserResponseDtoList", key = "#userDetails.user.companies.companyName")
+    @Cacheable(value = "UserResponseDtoList", key = "#userDetails.user.companies.companyName")
     public UserListResponseDto getAllUsers(UserDetailsImpl userDetails) {
         User user = userDetails.getUser();
 
@@ -127,7 +127,7 @@ public class AdminService {
 
 
     /* 캐시 삭제용 메서드 */
-//    @CacheEvict(cacheNames = "UserDetails", key = "#email")
+    @CacheEvict(cacheNames = "UserDetails", key = "#email")
     public void evictCacheByEmail(String email) {
         log.info("Evicting user from cache={}", email);
         Cache userDetailsCache = cacheManager.getCache("UserDetails");
@@ -137,7 +137,7 @@ public class AdminService {
     }
 
     /* 캐시 삭제용 메서드 */
-//    @CacheEvict(cacheNames = "UserResponseDtoList", key = "#userDetails.user.companies.companyName")
+    @CacheEvict(cacheNames = "UserResponseDtoList", key = "#userDetails.user.companies.companyName")
     public void evictCacheByCompanyName(UserDetailsImpl userDetails) {
         log.info("Evicting userList from cache={}", userDetails.getUser().getCompanies().getCompanyName());
         Cache userListCache = cacheManager.getCache("UserResponseDtoList");

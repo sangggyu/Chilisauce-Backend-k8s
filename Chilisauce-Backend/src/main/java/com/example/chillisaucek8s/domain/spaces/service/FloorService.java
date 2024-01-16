@@ -31,7 +31,7 @@ public class FloorService {
      * 플로어 생성
      */
     @Transactional
-//    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
+    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
     public FloorResponseDto createFloor(String companyName, FloorRequestDto floorRequestDto, UserDetailsImpl details) {
         if (!details.getUser().getRole().equals(UserRoleEnum.ADMIN) && !details.getUser().getRole().equals(UserRoleEnum.MANAGER)) {
             throw new SpaceException(SpaceErrorCode.NOT_HAVE_PERMISSION);
@@ -48,7 +48,7 @@ public class FloorService {
      * 플로어 전체 조회
      */
     @Transactional
-//    @Cacheable(cacheNames = "FloorResponseDtoList", key = "#companyName")
+    @Cacheable(cacheNames = "FloorResponseDtoList", key = "#companyName")
     public List<FloorResponseDto> getFloor (String companyName, UserDetailsImpl details) {
         if (!details.getUser().getCompanies().getCompanyName().equals(companyName)) {
             throw new SpaceException(SpaceErrorCode.NOT_HAVE_PERMISSION_COMPANIES);
@@ -61,7 +61,7 @@ public class FloorService {
      * 플로어 개별 수정
      */
     @Transactional
-//    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
+    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
     public FloorResponseDto updateFloor (String companyName, Long floorId, FloorRequestDto floorRequestDto, UserDetailsImpl details){
         if (!details.getUser().getRole().equals(UserRoleEnum.ADMIN) && !details.getUser().getRole().equals(UserRoleEnum.MANAGER)) {
             throw new SpaceException(SpaceErrorCode.NOT_HAVE_PERMISSION);
@@ -76,7 +76,7 @@ public class FloorService {
      * 플로어 삭제
      */
     @Transactional
-//    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
+    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
     public FloorResponseDto deleteFloor(String companyName, Long floorId, UserDetailsImpl details) {
         if (!details.getUser().getRole().equals(UserRoleEnum.ADMIN) && !details.getUser().getRole().equals(UserRoleEnum.MANAGER)) {
             throw new SpaceException(SpaceErrorCode.NOT_HAVE_PERMISSION);

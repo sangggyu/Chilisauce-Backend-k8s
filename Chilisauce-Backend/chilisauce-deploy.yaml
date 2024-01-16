@@ -18,19 +18,18 @@ spec:
       labels:
         app: chilisauce-backend
     spec:
-      serviceAccountName: chilisauce-serviceaccount
       terminationGracePeriodSeconds: 60
       containers:
         - name: chilisauce
-          image: 0892668/chilisauce-be:0.0.2
+          image: 0892668/chilisauce-be:0.0.4
           imagePullPolicy: Always
           resources:
             requests:
-              memory: "50Mi"
-              cpu: "50m"
-            limits:
               memory: "512Mi"
-              cpu: "500m"
+              cpu: "1000m"
+            limits:
+              memory: "1Gi"
+              cpu: "1500m"
           lifecycle:
             preStop:
               exec:
@@ -39,14 +38,14 @@ spec:
             httpGet:
               path: /probe/startup
               port: 8080
-            initialDelaySeconds: 15
+            initialDelaySeconds: 45
             periodSeconds: 1
             failureThreshold: 10
           readinessProbe:
             httpGet:
               path: /probe/ready
               port: 8080
-            initialDelaySeconds: 15
+            initialDelaySeconds: 45
             periodSeconds: 1
             successThreshold: 2
             failureThreshold: 3
@@ -54,7 +53,7 @@ spec:
             httpGet:
               path: /probe/live
               port: 8080
-            initialDelaySeconds: 15
+            initialDelaySeconds: 45
             periodSeconds: 1
             failureThreshold: 7
 

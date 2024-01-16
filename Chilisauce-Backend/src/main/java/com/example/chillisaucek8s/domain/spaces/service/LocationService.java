@@ -28,7 +28,7 @@ public class LocationService {
      * 사용자 이동
      */
     @Transactional
-//    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
+    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
     public LocationDto moveWithUser(String companyName, Long locationId, UserDetailsImpl details) {
 
         User user = details.getUser();

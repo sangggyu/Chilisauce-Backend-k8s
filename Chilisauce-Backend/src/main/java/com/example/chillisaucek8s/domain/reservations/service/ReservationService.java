@@ -151,7 +151,7 @@ public class ReservationService {
      * 회의실 예약 등록
      */
     @Transactional
-//    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
+    @CacheEvict(cacheNames = {"SpaceResponseDtoList", "FloorResponseDtoList"}, allEntries = true)
     public ReservationResponse addReservation(Long meetingRoomId,
                                               ReservationRequest request,
                                               UserDetailsImpl userDetails) {
