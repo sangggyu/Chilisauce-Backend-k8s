@@ -27,7 +27,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-**/resources/application.properties
+**/resources/application-secret.yaml
 **/resources/application.yaml
 **/resources/application-common.yaml
 **/resources/application-db.yaml
