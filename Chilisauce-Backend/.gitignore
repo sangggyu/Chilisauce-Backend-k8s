@@ -28,9 +28,9 @@ out/
 !**/src/test/**/out/
 
 **/resources/application.properties
-**/resources/application.yml
-**/resources/application-common.yml
-**/resources/application-db.yml
+**/resources/application.yaml
+**/resources/application-common.yaml
+**/resources/application-db.yaml
 **/resources/application-test.properties
 **/resources/application-secret.properties
 **/resources/application-perform-secret.properties
