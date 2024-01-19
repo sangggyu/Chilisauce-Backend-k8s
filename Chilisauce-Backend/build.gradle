@@ -218,7 +218,7 @@ jib {
 	}
 	to {
 		image = "0892668/chilisauce-be"
-		tags = ['latest', '0.0.4']
+		tags = ['latest', '0.0.7']
 	}
 	container {
 		creationTime ="USE_CURRENT_TIMESTAMP"
